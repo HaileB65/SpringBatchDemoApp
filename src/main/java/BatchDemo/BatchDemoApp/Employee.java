@@ -1,3 +1,5 @@
+package BatchDemo.BatchDemoApp;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
@@ -46,7 +48,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return String.format("Employee{id=%d, name='%s', designation='%s', nameUpdated='%s', designationUpdated='%s'}",
+        return String.format("BatchDemo.BatchDemoApp.Employee{id=%d, name='%s', designation='%s', nameUpdated='%s', designationUpdated='%s'}",
                 id, name, designation, nameUpdatedAt, designationUpdatedAt);
     }
 }

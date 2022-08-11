@@ -1,10 +1,14 @@
+package BatchDemo.BatchDemoApp;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.batch.BatchDataSource;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import javax.sql.DataSource;
 
@@ -25,23 +29,38 @@ public class DatabaseConfiguration {
     @Primary
     // The @Primary annotation is used to assign in higher preference to the annotated bean during bean injection when the class has multiple beans of same time, in this case we have two beans of the DataSource type.
     public DataSource mainDatasource() {
-        HikariConfig config = new HikariConfig();
-        config.setDriverClassName(mainDatasourceDriver);
-        config.setJdbcUrl(mainDatasourceUrl);
-        config.setUsername(mainDatasourceUsername);
-        config.setPassword(mainDatasourcePassword);
-        return new HikariDataSource(config);
+//        HikariConfig config = new HikariConfig();
+////        config.setDriverClassName(mainDatasourceDriver);
+//        config.setJdbcUrl(mainDatasourceUrl);
+//        config.setUsername(mainDatasourceUsername);
+//        config.setPassword(mainDatasourcePassword);
+//        return new HikariDataSource(config);
+        return DataSourceBuilder.create()
+                .url(mainDatasourceUrl)
+                .username(mainDatasourceUsername)
+                .password(mainDatasourcePassword)
+                .driverClassName(mainDatasourceDriver)
+                .type(SimpleDriverDataSource.class)
+                .build();
+
     }
 
     @Bean
     @BatchDataSource
     // @BatchDataSource annotation is used to specify that this bean will be used as the data source for the ItemReader during Batch Processing
     public DataSource batchDatasource() {
-        HikariConfig config = new HikariConfig();
-        config.setDriverClassName(batchDatasourceDriver);
-        config.setJdbcUrl(batchDatasourceUrl);
-        config.setUsername(batchDatasourceUsername);
-        config.setPassword(batchDatasourcePassword);
-        return new HikariDataSource(config);
+//        HikariConfig config = new HikariConfig();
+////        config.setDriverClassName(batchDatasourceDriver);
+//        config.setJdbcUrl(batchDatasourceUrl);
+//        config.setUsername(batchDatasourceUsername);
+//        config.setPassword(batchDatasourcePassword);
+//        return new HikariDataSource(config);
+        return DataSourceBuilder.create()
+                .url(batchDatasourceUrl)
+                .username(batchDatasourceUsername)
+                .password(batchDatasourcePassword)
+                .driverClassName(batchDatasourceDriver)
+                .type()
+                .build();
     }
 }

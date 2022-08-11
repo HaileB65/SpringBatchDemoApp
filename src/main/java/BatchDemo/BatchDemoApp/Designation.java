@@ -1,7 +1,9 @@
+package BatchDemo.BatchDemoApp;
+
 import javax.persistence.EntityNotFoundException;
 import java.util.Arrays;
 
-// Enum class for the Designation of the Employees
+// Enum class for the BatchDemo.BatchDemoApp.Designation of the Employees
 public enum Designation {
     DEVELOPER("dev", "Developer"),
     DESIGNER("des", "Designer"),
