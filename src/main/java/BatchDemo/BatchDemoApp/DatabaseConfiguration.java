@@ -60,7 +60,7 @@ public class DatabaseConfiguration {
                 .username(batchDatasourceUsername)
                 .password(batchDatasourcePassword)
                 .driverClassName(batchDatasourceDriver)
-                .type()
+//                .type()
                 .build();
     }
 }
